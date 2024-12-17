@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz HTML, CSS, JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="quiz-container">
+        <h1>Quiz : HTML, CSS et JavaScript</h1>
+        <div id="quiz-form">
+            <div class="question">
+                <p>1. Que signifie HTML ?</p>
+                <input type="checkbox" name="question1" value="a"> a) Hyper Text Markup Language <br>
+                <input type="checkbox" name="question1" value="b"> b) High Text Machine Language <br>
+                <input type="checkbox" name="question1" value="c"> c) Hyper Tool Markup Language
+            </div>
+        </div>
+        <div class="question">
+            <p>2. Quelle balise utilise-t-on pour insérer un paragraphe ?</p>
+            <input type="checkbox" name="question2" value="a"> a) &lt;par&gt; <br>
+            <input type="checkbox" name="question2" value="b"> b) &lt;p&gt; <br>
+            <input type="checkbox" name="question2" value="c"> c) &lt;pg&gt;
+        </div>
+
+        <div class="question">
+            <p>3. Quel attribut CSS permet de changer la couleur du texte ?</p>
+            <input type="checkbox" name="question3" value="a"> a) text-style <br>
+            <input type="checkbox" name="question3" value="b"> b) font-color <br>
+            <input type="checkbox" name="question3" value="c"> c) color
+        </div>
+
+        <div class="question">
+            <p>4. Quelle est la signification de CSS ?</p>
+            <input type="checkbox" name="question4" value="a"> a) Creative Style Sheets <br>
+            <input type="checkbox" name="question4" value="b"> b) Computer Style Sheets<br>
+            <input type="checkbox" name="question4" value="c"> c) Cascading Style Sheets
+        </div>
+
+        <div class="question">
+            <p>5. Quel est le rôle de JavaScript ?</p>
+            <input type="checkbox" name="question5" value="a"> a) Créer du contenu statique <br>
+            <input type="checkbox" name="question5" value="b"> b) Ajouter de l'interactivité <br>
+            <input type="checkbox" name="question5" value="c"> c) Structurer les données
+        </div>
+
+        <div class="question">
+            <p>6. Quelle balise utilise-t-on pour une image ?</p>
+            <input type="checkbox" name="question6" value="a"> a) &lt;img&gt; <br>
+            <input type="checkbox" name="question6" value="b"> b) &lt;image&gt; <br>
+            <input type="checkbox" name="question6" value="c"> c) &lt;pic&gt;
+        </div>
+
+        <div class="question">
+            <p>7. Comment déclare-t-on une variable en JavaScript ? </p>
+            <input type="checkbox" name="question7" value="a"> a) var <br>
+            <input type="checkbox" name="question7" value="b"> b) variable <br>
+            <input type="checkbox" name="question7" value="c"> c) v
+        </div>
+
+        <div class="question">
+            <p>8. Quel est l'opérateur d'affectation en JavaScript ?</p>
+            <input type="checkbox" name="question8" value="a"> a) = <br>
+            <input type="checkbox" name="question8" value="b"> b) == <br>
+            <input type="checkbox" name="question8" value="c"> c) ===
+        </div>
+
+        <div class="question">
+            <p>9. Quelle pseudo-classe CSS est utilisée pour styliser un lien survolé par la souris ?</p>
+            <input type="checkbox" name="question9" value="a"> a) :visited <br>
+            <input type="checkbox" name="question9" value="b"> b) :active <br>
+            <input type="checkbox" name="question9" value="c"> c) :hover
+        </div>
+
+        <div class="question">
+            <p>10. Quel sélecteur CSS est utilisé pour sélectionner tous les éléments avec une classe spécifique ?</p>
+            <input type="checkbox" name="question10" value="a"> a) #classname <br>
+            <input type="checkbox" name="question10" value="b"> b) .classname <br>
+            <input type="checkbox" name="question10" value="c"> c) *classname
+        </div>
+
+        <div class="question">
+            <p>11. Quelle est la valeur par défaut de la propriété position en CSS ?</p>
+            <input type="checkbox" name="question11" value="a"> a) static <br>
+            <input type="checkbox" name="question11" value="b"> b) relative <br>
+            <input type="checkbox" name="question11" value="c"> c) fixed
+        </div>
+
+        <div class="question">
+            <p>12. Que signifie l'attribut alt dans une balise &lt;img&gt; ?</p>
+            <input type="checkbox" name="question12" value="a"> a) Ajouter une bordure à l'image <br>
+            <input type="checkbox" name="question12" value="b"> b) Fournir un texte alternatif si l'image ne peut <br>
+            <input type="checkbox" name="question12" value="c"> c) Changer la taille de l'image
+        </div>
+
+        <button type="button" onclick="Quiz()">Valider</button>
+    </div>
+
+    <div id="result" class="result" style="display: none;"></div>
+    <script>
+        function Quiz() {
+            reponsesCorrectes = {
+                question1: 'a',
+                question2: 'b',
+                question3: 'c',
+                question4: 'c',
+                question5: 'b',
+                question6: 'a',
+                question7: 'a',
+                question8: 'a',
+                question9: 'c',
+                question10: 'b',
+                question11: 'a',
+                question12: 'b'
+            };
+
+            score = 0;
+            totalQuestions = 12;
+            reponsesCorrectesAffichees = "";
+
+            for (let question in reponsesCorrectes) {
+                reponseUtilisateur = document.querySelector(`input[name="${question}"]:checked`);
+
+                if (reponseUtilisateur && reponseUtilisateur.value === reponsesCorrectes[question]) {
+                    score++;
+                    reponsesCorrectesAffichees += `<p>${question} : "<b>${reponseUtilisateur.value}</b>"</p>`;
+                }
+            }
+
+            resultat = document.getElementById("result");
+            resultat.style.display = "block";
+            resultat.innerHTML = `<h2>Votre score est : ${score} / ${totalQuestions}</h2>${reponsesCorrectesAffichees}`;
+        }
+    </script>
+</body>
+
+</html>
